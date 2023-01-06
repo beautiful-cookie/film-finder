@@ -14,7 +14,7 @@
   min-height: 40px; 
   max-height: 10vh; 
   height: 10vh;  
-  z-index: 4;
+  z-index: 3;
 } 
 
 .logo { 

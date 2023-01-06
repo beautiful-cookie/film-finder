@@ -15,10 +15,10 @@ body {
 } 
 body::after {
   content: ''; 
-  position: absolute; 
+  position: fixed; 
   top: 0; 
   left: 0; 
-  width: 110%;  
+  width: 100%;  
   min-height: 100vh;
   height: 100%; 
   background: rgba(0, 0, 0, 0.7); 
@@ -34,8 +34,19 @@ body::after {
   flex-direction: column; 
   width: 100vw; 
   height: auto; 
+  z-index: 3;
+}  
 
-} 
+.movieWrapper {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 20px; 
+  flex-wrap: wrap; 
+  width: 80vw; 
+  max-width: 80vw; 
+  margin-top: 10vh; 
+}  
 
 @media screen and (max-width: 700px) {
   body {
