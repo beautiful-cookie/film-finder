@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.4aafa36e.css",
-    "main.js": "/static/js/main.8037bb12.js",
-    "static/js/787.818dadd0.chunk.js": "/static/js/787.818dadd0.chunk.js",
-    "static/media/bg2.jpg": "/static/media/bg2.35aaf1f8f4c3f474b5ee.jpg",
-    "static/media/bg1.jpg": "/static/media/bg1.6596e401db8e8bcdad1f.jpg",
-    "static/media/bg4.jpg": "/static/media/bg4.a3df746711876a1b28ae.jpg",
-    "index.html": "/index.html",
-    "main.4aafa36e.css.map": "/static/css/main.4aafa36e.css.map",
-    "main.8037bb12.js.map": "/static/js/main.8037bb12.js.map",
-    "787.818dadd0.chunk.js.map": "/static/js/787.818dadd0.chunk.js.map"
+    "main.css": "/film-finder/static/css/main.cbba7c7c.css",
+    "main.js": "/film-finder/static/js/main.8c52d667.js",
+    "static/js/787.818dadd0.chunk.js": "/film-finder/static/js/787.818dadd0.chunk.js",
+    "static/media/bg2.jpg": "/film-finder/static/media/bg2.35aaf1f8f4c3f474b5ee.jpg",
+    "static/media/bg1.jpg": "/film-finder/static/media/bg1.6596e401db8e8bcdad1f.jpg",
+    "static/media/bg4.jpg": "/film-finder/static/media/bg4.a3df746711876a1b28ae.jpg",
+    "index.html": "/film-finder/index.html",
+    "main.cbba7c7c.css.map": "/film-finder/static/css/main.cbba7c7c.css.map",
+    "main.8c52d667.js.map": "/film-finder/static/js/main.8c52d667.js.map",
+    "787.818dadd0.chunk.js.map": "/film-finder/static/js/787.818dadd0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4aafa36e.css",
-    "static/js/main.8037bb12.js"
+    "static/css/main.cbba7c7c.css",
+    "static/js/main.8c52d667.js"
   ]
 }
