@@ -1,12 +1,12 @@
 .posterWrapper { 
   display: flex; 
-  justify-content: flex-start; 
+  justify-content: space-around; 
   align-items: center; 
   flex-direction: column; 
   min-width: 200px; 
-  min-height: 325px;
-  max-width: 15vw; 
-  max-height: 35vh; 
+  min-height: 400px;
+  max-width: 20vw; 
+  max-height: 50vh; 
   border: 1px solid white; 
   padding: 5px; 
   transition: background-color, box-shadow, 0.3s; 
@@ -18,7 +18,8 @@
 
 .filmTitle { 
   width: 90%; 
-  height: 10%; 
+  max-height: 10%; 
+  overflow: scroll;  
   font-size: 18px;
   text-align: center; 
   text-justify: center; 
@@ -30,7 +31,7 @@
 
 .imgWrapper {
   width: 90%; 
-  height: 70%; 
+  height: 65%; 
 } 
 .imgWrapper img {
   width: 100%; 
@@ -46,16 +47,85 @@
   padding: 1px 5px 1px 5px;
 }
 
+
+@media screen and (max-width: 1000px) {
+  .posterWrapper { 
+    min-width: 200px; 
+    min-height: 325px;
+    max-width: 20vw; 
+    max-height: 50vh; 
+  } 
+
+  .filmTitle {
+    font-size: 18px;
+  } 
+  
+  .date { 
+    font-size: 14px; 
+  }
+}
+
 @media screen and (max-width: 700px) {
   .posterWrapper { 
     min-width: 100px; 
-    min-height: auto; 
-    max-width: 15vw; 
+    min-height: 240px; 
+    max-width: 20vw; 
     max-height: 35vh; 
   } 
 
   .filmTitle {
-    font-size: 14px;
+    font-size: 12px;
+  } 
+  
+  .date { 
+    font-size: 14px; 
+  }
+} 
+
+@media screen and (max-width: 600px) {
+  .posterWrapper { 
+    min-width: 100px;
+    min-height: 210px;
+    max-width: 24vw;
+    max-height: 45vh; 
+  } 
+
+  .filmTitle { 
+    font-size: 11px;
+  } 
+  
+  .date { 
+    font-size: 14px; 
+  }
+} 
+
+@media screen and (max-width: 450px) {
+  .posterWrapper { 
+    min-width: 100px;
+    min-height: 45vh;
+    max-width: 37vw;
+    max-height: 50vh;
+  } 
+
+  .filmTitle { 
+    font-size: 11px;
+  } 
+  
+  .date { 
+    font-size: 14px; 
+  }
+} 
+
+@media screen and (max-width: 350px) {
+  .posterWrapper { 
+    min-width: 100px;
+    min-height: 47vh;
+    max-width: 60vw;
+    max-height: 80vh;
+  } 
+
+  .filmTitle { 
+    font-size: 12px;
   } 
   
   .date { 
