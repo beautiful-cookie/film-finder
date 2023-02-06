@@ -5,10 +5,20 @@ import Movie from './components/Movie/Movie';
 import Search from './components/Search/Search';
 
 
+const setPagesCount = (pages) => {
+  let tempArr = []
+  let totalPagesCount = Math.ceil(pages / 12) 
+  for (let i = 1; i<=totalPagesCount; i++) {
+    tempArr.push(i)
+  } 
+  return tempArr 
+}
+
 const initialState = {
   loading: true, 
   errorMessage: null, 
-  moviesArr: [] 
+  moviesArr: [], 
+  pages: setPagesCount(0)  
 }
 
 const reducer = (state, action) => {
@@ -23,6 +33,7 @@ const reducer = (state, action) => {
         return { 
           ...state, 
           loader: false, 
+          pages: setPagesCount(action.pagesCount), 
           moviesArr: action.insideJSON 
         }   
         case 'SEARCH_MOVIES_FAILURE':
@@ -31,7 +42,7 @@ const reducer = (state, action) => {
             loader: false, 
             errMessage: action.error  
           }   
-  
+   
     default:
       return state;
   }
@@ -47,10 +58,10 @@ function App() {
     fetch(MOVIE_API_URL) 
       .then(response => response.json()) 
       .then(searchJSON => { 
-
         dispatch({
           type: 'SEARCH_MOVIES_SUCCESS', 
           insideJSON: searchJSON.Search, 
+          pagesCount: searchJSON.totalResults 
         }) 
         
       }) 
@@ -69,6 +80,7 @@ function App() {
           dispatch({ 
             type: 'SEARCH_MOVIES_SUCCESS', 
             insideJSON: responseJSON.Search, 
+            pagesCount: responseJSON.totalResults 
           }) 
         } 
         else { 
@@ -80,7 +92,7 @@ function App() {
       }) 
   }
   
-const {errMessage, loader, moviesArr} = state; 
+const {errMessage, loader, moviesArr, pages} = state; 
 
   return (
     <div className='app-wrapper'>
@@ -94,6 +106,19 @@ const {errMessage, loader, moviesArr} = state;
           <Movie key={`${index}-${movie.Title}`} movie={movie} />  
         ))} 
       </div> 
+      <div className='pagination-wrapper'>
+          <div className='paginator'>
+            {
+              pages.map(page => {
+                return (
+                  <span className='page' key={page}>
+                    <span>{page}</span>
+                  </span>
+                )
+              })
+            }
+          </div>
+      </div>
     </div> 
   );
 }
