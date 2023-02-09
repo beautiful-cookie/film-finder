@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react'; 
+import React, { useEffect, useReducer } from 'react'; 
 import './App.css';  
 import Header from './components/Header/Header';
 import Movie from './components/Movie/Movie'; 
@@ -7,7 +7,7 @@ import Search from './components/Search/Search';
 
 const setPagesCount = (pages) => {
   let tempArr = []
-  let totalPagesCount = Math.ceil(pages / 12) 
+  let totalPagesCount = Math.ceil(pages / 10) 
   for (let i = 1; i<=totalPagesCount; i++) {
     tempArr.push(i)
   } 
@@ -18,7 +18,9 @@ const initialState = {
   loading: true, 
   errorMessage: null, 
   moviesArr: [], 
-  pages: setPagesCount(0)  
+  pages: setPagesCount(0), 
+  page: 1, 
+  search: 'man' 
 }
 
 const reducer = (state, action) => {
@@ -27,7 +29,9 @@ const reducer = (state, action) => {
       return {
         ...state, 
         loader: true, 
-        errMessage: null 
+        errMessage: null, 
+        page: action.newPage, 
+        search: action.newValue 
       }      
       case 'SEARCH_MOVIES_SUCCESS':
         return { 
@@ -42,6 +46,11 @@ const reducer = (state, action) => {
             loader: false, 
             errMessage: action.error  
           }   
+        case 'UPDATE_PAGE':
+          return {
+            ...state, 
+            page: action.newPage 
+          }   
    
     default:
       return state;
@@ -51,46 +60,38 @@ const reducer = (state, action) => {
 function App() { 
   const [state, dispatch] = useReducer(reducer, initialState) 
 
-  const MOVIE_API_URL = "https://www.omdbapi.com/?s=man&apikey=4a3b711b"; 
+  const MOVIE_API_URL = `https://www.omdbapi.com/?s=${state.search}&apikey=4a3b711b&plot=full&page=${state.page}`; 
 
 
   useEffect ( () => {
     fetch(MOVIE_API_URL) 
       .then(response => response.json()) 
       .then(searchJSON => { 
-        dispatch({
-          type: 'SEARCH_MOVIES_SUCCESS', 
-          insideJSON: searchJSON.Search, 
-          pagesCount: searchJSON.totalResults 
-        }) 
-        
-      }) 
-  }, [])  
-
-  const search = searchValue => { 
-
-    dispatch({
-      type: 'SEARCH_MOVIES_REQUEST', 
-    })
-
-    fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`) 
-      .then(response => response.json())  
-      .then(responseJSON => {
-        if (responseJSON.Response === 'True') { 
-          dispatch({ 
+        if (searchJSON.Response === 'True') { 
+          dispatch({
             type: 'SEARCH_MOVIES_SUCCESS', 
-            insideJSON: responseJSON.Search, 
-            pagesCount: responseJSON.totalResults 
+            insideJSON: searchJSON.Search, 
+            pagesCount: searchJSON.totalResults 
           }) 
-        } 
+        }
         else { 
           dispatch({
             type: 'SEARCH_MOVIES_FAILURE', 
-            error: responseJSON.Error 
+            error: searchJSON.Error 
           }) 
         }
+        
       }) 
-  }
+  }, [state.page, state.search])  
+
+  const search = searchValue => { 
+    
+    dispatch({
+      type: 'SEARCH_MOVIES_REQUEST', 
+      newPage: 1, 
+      newValue: searchValue 
+    }) 
+}
   
 const {errMessage, loader, moviesArr, pages} = state; 
 
@@ -109,10 +110,15 @@ const {errMessage, loader, moviesArr, pages} = state;
       <div className='pagination-wrapper'>
           <div className='paginator'>
             {
-              pages.map(page => {
+              pages.map(p => {
                 return (
-                  <span className='page' key={page}>
-                    <span>{page}</span>
+                  <span className='page' key={p}>
+                    <span onClick={ (e) => {
+                      dispatch({
+                        type: 'UPDATE_PAGE', 
+                        newPage: p 
+                      })
+                    }}>{p}</span>
                   </span>
                 )
               })

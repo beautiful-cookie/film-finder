@@ -78,7 +78,6 @@ body::after {
   border-bottom: 1px solid white;
   padding-top: 21px;
   height: 90%;
-  -webkit-user-select: none;
   user-select: none;
   overflow-x: scroll;
 } 
