@@ -33,7 +33,7 @@ const reducer = (state, action) => {
         page: action.newPage, 
         search: action.newValue 
       }      
-      case 'SEARCH_MOVIES_SUCCESS':
+      case 'SEARCH_MOVIES_SUCCESS': 
         return { 
           ...state, 
           loader: false, 
