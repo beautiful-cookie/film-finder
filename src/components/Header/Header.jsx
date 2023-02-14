@@ -5,9 +5,7 @@ const Header = (props) => {
         <header className={classes.headerWrapper}> 
             <span className={classes.logo}>Кино</span> 
             <div className={classes.headerElementsLogo}> 
-              <span className={classes.logoElement}>Главная</span>
-              <span className={classes.logoElement}>Поле 1</span>
-              <span className={classes.logoElement}>Поле 2</span>
+              <span className={classes.logoElement} onClick={ () => {props.returnToMainpage('man')} }>Главная</span>
             </div> 
         </header> 
     )

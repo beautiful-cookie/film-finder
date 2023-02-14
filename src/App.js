@@ -93,14 +93,14 @@ function App() {
     }) 
 }
   
-const {errMessage, loader, moviesArr, pages} = state; 
+const {errMessage, loader, moviesArr, pages, page} = state; 
 
   return (
     <div className='app-wrapper'>
-      <Header /> 
+      <Header returnToMainpage={search} /> 
       <Search search={search} /> 
       <div className='movieWrapper'> 
-        { loader && !errMessage ? (<span>loading...</span>) 
+        { loader && !errMessage ? (<span className='loading'>Loading...</span>) 
         : errMessage 
         ? (<div className='errMessage'>{errMessage}</div>) 
         : moviesArr.map((movie, index) => (
@@ -112,13 +112,14 @@ const {errMessage, loader, moviesArr, pages} = state;
             {
               pages.map(p => {
                 return (
-                  <span className='page' key={p}>
-                    <span onClick={ (e) => {
+                  <span className={page === p ? 'page selectedPage' : 'page'} key={p}
+                    onClick={ (e) => {
                       dispatch({
                         type: 'UPDATE_PAGE', 
                         newPage: p 
                       })
-                    }}>{p}</span>
+                    }}>
+                    <span>{p}</span>
                   </span>
                 )
               })
@@ -129,4 +130,4 @@ const {errMessage, loader, moviesArr, pages} = state;
   );
 }
 
-export default App;
+export default App; 
